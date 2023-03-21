@@ -1,0 +1,33 @@
+<div>
+    <h3>Add Post</h3>
+    <hr/>
+    <form [formGroup]="postsForm" (ngSubmit)="OnSubmit()">
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" class="form-control" formControlName="title">
+            <div *ngIf="postsForm.get('title').touched && !postsForm.get('title').valid">
+                <div *ngIf="postsForm.get('title').errors?.['required']">
+                    Title is required
+                </div>
+                <div *ngIf="postsForm.get('title').errors?.['minlength']">
+                    Title should be minimum 6 characters
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="desc">Description</label>
+            <input id="desc" type="text" class="form-control" formControlName="description">
+            <div *ngIf="postsForm.get('description').touched && !postsForm.get('description').valid">
+                <div *ngIf="postsForm.get('description').errors?.['required']">
+                    Description is required
+                </div>
+                <div *ngIf="postsForm.get('description').errors?.['minlength']">
+                    Description should be minimum 10 characters
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" [disabled]="!postsForm.valid">Add Post</button>
+        </div>
+    </form>
+</div>
