@@ -15,27 +15,36 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PostsComponent } from './posts/posts.component';
+//import { PostsComponent } from './posts/posts.component';
 import { appReducer } from './store/app.state';
-import { AddPostComponent } from './posts/add-post/add-post.component';
+//import { AddPostComponent } from './posts/add-post/add-post.component';
+//import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { PostsModule } from './posts/posts.module';
+import { CounterModule } from './counter/counter.module';
+import { LoginComponent } from './Auth/login/login.component';
+import { AuthModule } from './Auth/auth.module';
+import { EffectsModule } from '@ngrx/effects';
+import {HttpClientModule} from '@angular/common/http';
+import { AuthEffects } from './Auth/state/effects';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ParentCounterComponent,
-    CounterOutputComponent,
-    CounterButtonsComponent,
-    CounterCustomInputComponent,
     NavbarComponent,
     HomeComponent,
-    PostsComponent,
-    AddPostComponent
+    
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
+    PostsModule,
+    CounterModule,
+    AuthModule,
+    HttpClientModule,
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       logOnly: !isDevMode(), 

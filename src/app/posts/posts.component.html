@@ -9,12 +9,17 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Actions</th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let post of posts | async">
                             <td>{{post.id}}</td>
                             <td>{{post.title}}</td>
                             <td>{{post.description}}</td>
+                            <td>
+                                <button class="btn btn-primary" [routerLink]="['edit',post.id]">Update</button>
+                                <button class="btn btn-danger" (click)="OnDelete(post.id)">Delete</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
